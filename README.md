@@ -21,6 +21,16 @@ or in development mode:
 
 > $ **npm install --save-dev jsoft-agile**
 
+## Loading
+
+you can load this module like this:
+
+> $ **const jagile = require("jsoft-agile")**
+
+or like this:
+
+$ **import jagile from "jsoft-agile"**
+
 ## What jsoft-agile offers us?
 * `isString` *check if the passed value is a **string***
 * `isAllString` *check if all elements of an array are **strings***
