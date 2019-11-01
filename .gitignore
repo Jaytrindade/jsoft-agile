@@ -10,4 +10,5 @@ node_modules
 .wafpickle-*
 config.gypi
 CVS
+*lock.json
 npm-debug.log

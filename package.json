@@ -1,6 +1,6 @@
 {
   "name": "jsoft-agile",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Node.js module that provides a collection of ready-made functions used on large systems for their development.",
   "main": "./bin/index.js",
   "directories": {
@@ -11,7 +11,7 @@
     "jsoft-agile": "bin/index.js"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "nodemon test.js"
   },
   "repository": {
     "type": "git",
@@ -38,6 +38,8 @@
     "mongoose": "^5.7.7"
   },
   "peerDependencies": {
-    "mongoose": "^5.7.7"
-  }
+    "mongoose": "^5.7.7",
+    "shebang-loader": "0.0.1"
+  },
+  "devDependencies": {}
 }

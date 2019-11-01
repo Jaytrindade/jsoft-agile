@@ -60,7 +60,7 @@ or in development mode:
 * `uniqueArrayObjectBy` *remove repeated elements from an **array** of **objects** by property*
 * `existModule` *check if there is a node.js **module** like "http, jsoft-agile, etc..."*
 
->**38 functions ready for you**
+>**37 functions ready for you**
 
 ## How can I use?
 ### isString
@@ -674,7 +674,7 @@ and so on...
 > Check the minimum amount of characters for each word. The return is **boolean**.
 
 #### Syntax
-> checkMinValueEachWords(value: string) => boolean
+> checkMinValueEachWords(value: string, min: number) => boolean
 
 #### Use
 ```
@@ -945,7 +945,7 @@ We use [SemVer](https://semver.org/) for versioning.
 > João Trindade
 
 * **Email:** <joaotrindade.soft@gmail.com>
-* **WhatsApp**: +244 913 056 212
+* **WhatsApp:** +244 913 056 212
 * **[Facebook](https://www.facebook.com/jaytrindade.jt)**
 
 ## License
