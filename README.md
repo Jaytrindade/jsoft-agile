@@ -29,7 +29,7 @@ you can load this module like this:
 
 or like this:
 
-$ **import jagile from "jsoft-agile"**
+> $ **import jagile from "jsoft-agile"**
 
 ## What jsoft-agile offers us?
 * `isString` *check if the passed value is a **string***
