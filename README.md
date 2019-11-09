@@ -103,7 +103,7 @@ import jagile from "jsoft-agile"
 
 ## How can I use?
 ### isString
-Check if the passeds value is a **`string`**. The return is **`boolean`**.
+Check if the passed value is a **`string`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
