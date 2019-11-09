@@ -41,14 +41,16 @@ import jagile from "jsoft-agile"
 
 #### Addeds in version 2.x 
 
+* [**`isAll`**](#isAll) *check if all elements of `array` are `typeof` passed*
 * [**`inArrayAnyValue`**](#inArrayAnyValue) *check if any value exists inside `array`*
 * [**`inObjectAnyProp`**](#inObjectAnyProp) *check if any prop exists inside `object`*
 * [**`hasValueAllProps`**](#hasValueAllProps) *check if all **props** have **value***
 * [**`getTypeof`**](#getTypeof) *get **type** of **value** like "commonNumber, commonObject, array, function, etc..."*
 * [**`wallFilters`**](#wallFilters) *validates or filters all data according to a **rule***
 
-> 5 new features added
-
+```
+6 new features added
+``` 
 
 #### Addeds in version 1.x
 
@@ -60,7 +62,7 @@ import jagile from "jsoft-agile"
 * [**`isBoolean`**](#isBoolean) *check if the passed value is a `boolean`*
 * [**`isAllBoolean`**](#isAllBoolean) *check if all elements of an array are `boolean`*
 * [**`isObject`**](#isObject) *check if the passed value is a `object` like "null, {}, etc..."*
-* [**`isObjectId`**](#isObjectId) *check if the passed value is a common `objectId` like "5db7e872dab3eb3d7cc44080"*
+* [**`isObjectId`**](#isObjectId) *check if the passed value is a `objectId` like "5db7e872dab3eb3d7cc44080"*
 * [**`isAllObjectId`**](#isAllObjectId) *check if all elements of an array are `objectId` like "5db7e872dab3eb3d7cc44080*
 * [**`isCommonObject`**](#isCommonObject) *Check if the passed value is a `commonObject` like "{}"*
 * [**`isAllCommonObject`**](#isAllCommonObject) *check if all elements of an array are `commonObject` like "{}"*
@@ -90,11 +92,13 @@ import jagile from "jsoft-agile"
 * [**`uniqueArrayObjectBy`**](#uniqueArrayObjectBy) *remove **repeated** elements from an `array` of `objects` by property*
 * [**`existModule`**](#existModule)  *check if there is a node.js **module** like "http, jsoft-agile, etc..."*
 
-> 37 functions ready for you
+```
+37 functions ready for you
+``` 
 
 ## How can I use?
 ### isString
-> Check if the passed value is a **`string`**. The return is **`boolean`**.
+Check if the passed value is a **`string`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -118,7 +122,7 @@ console.log(jagile.isString({}));
 ```
 
 ### isAllString
-> Check if all elements of an `array` are **`string`**. The return is **`boolean`**.
+Check if all elements of an `array` are **`string`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript 
@@ -155,7 +159,8 @@ console.log(jagile.isAllString(["joão", 1, NaN, {}]))
 ```
 
 ### isNumber
-> Check if the passed value is a **`number`**. The return is **`boolean`**.
+Check if the passed value is a **`number`**. The return is **`boolean`**.
+
 
 #### Syntax
 ```javascript
@@ -179,7 +184,7 @@ console.log(jagile.isNumber("jay"));
 ```
 
 ### isCommonNumber
-> Checks if the passed value is a **`commonNumber`** like "-1, 0, 1, 2.1, etc...". The return is **`boolean`**.
+Checks if the passed value is a **`commonNumber`** like "-1, 0, 1, 2.1, etc...". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -203,7 +208,7 @@ console.log(jagile.isCommonNumber("jay"));
 ```
 
 ### isAllCommonNumber
-> Check if all elements of an `array` are **`commonNumber`** like "-1, 0, 1, 2.1, etc...". The return is **`boolean`**.
+Check if all elements of an `array` are **`commonNumber`** like "-1, 0, 1, 2.1, etc...". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -239,7 +244,7 @@ console.log(jagile.isAllCommonNumber([name, id]))
 ```
 
 ### isBoolean
-> Check if the passed value is a **`boolean`**. The return is **`boolean`**.
+Check if the passed value is a **`boolean`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -263,7 +268,7 @@ console.log(jagile.isBoolean("jay"));
 ```
 
 ### isAllBoolean
-> Check if all elements of an `array` are **`boolean`**. The return is **`boolean`**.
+Check if all elements of an `array` are **`boolean`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -287,8 +292,32 @@ console.log(jagile.isAllBoolean([cool, data]))
 // and so on...
 ```
 
+### isAll
+Check if all elements of `array` are `typeof` passed. The return is **`boolean`**.
+
+#### Syntax
+```javascript
+isAll: (values: any, type: string) => boolean
+```
+
+#### Use
+```javascript
+// example
+console.log(jagile.isAll([true, false], "boolean"))
+> true
+
+console.log(jagile.isAll([1, 2.1], "commonNumber"))
+> true
+
+console.log(jagile.isAll([1, "jay"], "string"))
+> false
+
+
+// and so on...
+```
+
 ### isObject
-> Check if the passed value is a **`object`**. The return is **`boolean`**.
+Check if the passed value is a **`object`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -318,7 +347,7 @@ console.log(jagile.isObject("jay"));
 ```
 
 ### isObjectId
-> Check if the passed value is a **`objectId`** like "5db7e872dab3eb3d7cc44080". The return is **`boolean`**.
+Check if the passed value is a **`objectId`** like "5db7e872dab3eb3d7cc44080". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -348,7 +377,7 @@ console.log(jagile.isObjectId("jay"));
 ```
 
 ### isAllObjectId
-> Check if all elements of an `array` are **`objectId`** like "5db7e872dab3eb3d7cc44080. The return is **`boolean`**.
+Check if all elements of an `array` are **`objectId`** like "5db7e872dab3eb3d7cc44080. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -381,7 +410,7 @@ console.log(jagile.isAllObjectId(["5db7e872dab3eb3d7cc44bcd", 1, false]))
 ```
 
 ### isCommonObject
-> Check if the passed value is a **`commonObject`** like "{}". The return is **`boolean`**.
+Check if the passed value is a **`commonObject`** like "{}". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -411,7 +440,7 @@ console.log(jagile.isCommonObject("jay"));
 ```
 
 ### isAllCommonObject
-> Check if all elements of an `array` are **`commonObject`** like "{}". The return is **`boolean`**.
+Check if all elements of an `array` are **`commonObject`** like "{}". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -444,7 +473,7 @@ console.log(jagile.isAllCommonObject([["jay", "trindade"], 1]))
 ```
 
 ### isArray
-> Check if the passed value is an **`array`**. The return is **`boolean`**.
+Check if the passed value is an **`array`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -474,7 +503,7 @@ console.log(jagile.isArray("jay"));
 ```
 
 ### isAllArray
-> Check if all elements of an `array` are **`array`**. The return is **`boolean`**.
+Check if all elements of an `array` are **`array`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -507,7 +536,7 @@ console.log(jagile.isAllArray([["jay", "trindade"], 1]))
 ```
 
 ### isEmail
-> Check if the passed value is an **`email`**. The return is **`boolean`**.
+Check if the passed value is an **`email`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -534,7 +563,7 @@ console.log(jagile.isEmail("jay"));
 ```
 
 ### isUsername
-> Check if the passed value is a **`username`** like "_joao99, jay99_, jay, etc...". The return is **`boolean`**.
+Check if the passed value is a **`username`** like "_joao99, jay99_, jay, etc...". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -558,7 +587,7 @@ console.log(jagile.isUsername("12jay"));
 ```
 
 ### isPhoneNumber
-> Check if the passed value is an international **phone number** like "+244 913 056 212, +555 555 1234". The return is **`boolean`**.
+Check if the passed value is an international **phone number** like "+244 913 056 212, +555 555 1234". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -579,7 +608,7 @@ console.log(jagile.isPhoneNumber("555 555 1234"));
 ```
 
 ### inArray
-> Check if value exists inside **`array`**. The return is **`boolean`**.
+Check if value exists inside **`array`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -605,7 +634,7 @@ console.log(jagile.inArray(arr, [0, 1]));
 ```
 
 ### inArrayAnyValue
-> Check if any value exists inside `array`. The return is **`commonObject`**.
+Check if any value exists inside `array`. The return is **`commonObject`**.
 
 #### Syntax
 ```javascript
@@ -631,7 +660,7 @@ console.log(jagile.inArrayAnyValue(arr, [0, "soft", true]));
 ```
 
 ### inObject
-> Check if value exists inside **`object`**. The return is **`boolean`**.
+Check if value exists inside **`object`**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -657,7 +686,7 @@ console.log(jagile.inObject(obj, ["id", "sex"]));
 ```
 
 ### inObjectAnyProp
-> check if any prop exists inside **`commonObject`**. The return is **`commonObject`**.
+Check if any prop exists inside **`commonObject`**. The return is **`commonObject`**.
 
 #### Syntax
 ```javascript
@@ -683,7 +712,7 @@ console.log(jagile.inObjectAnyProp(obj, ["sex", "city", "state"]));
 ```
 
 ### hasValue
-> Check if has some **value**. The return is **`boolean`**.
+Check if has some **value**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -716,7 +745,7 @@ console.log(jagile.hasValue(null));
 ```
 
 ### hasAllValue
-> Check if all elements of an `array` has **value**. The return is **`boolean`**.
+Check if all elements of an `array` has **value**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -745,7 +774,7 @@ console.log(jagile.hasAllValue(["", "Oops", {}, []]))
 ```
 
 ### hasValueAllProps
-> Check if all **props** have **value**. The return is **`commonObject`**.
+Check if all **props** have **value**. The return is **`commonObject`**.
 
 #### Syntax
 ```javascript
@@ -770,7 +799,7 @@ console.log(jagile.hasValueAllProps(obj, ["country", "city"]))
 ```
 
 ### justifySpaceWords
-> Justify space between **words**. The return is **`string`**.
+Justify space between **words**. The return is **`string`**.
 
 #### Syntax
 ```javascript
@@ -788,7 +817,7 @@ console.log(jagile.justifySpaceWords("joão  trindade"));
 ```
 
 ### capitalizeText
-> Make the **first** letters of **words** capitalized. The return is **`string`**.
+Make the **first** letters of **words** capitalized. The return is **`string`**.
 
 #### Syntax
 ```javascript
@@ -809,7 +838,7 @@ console.log(jagile.capitalizeText("jOÃO tRiNdade jsoFt", true));
 ```
 
 ### checkMinValueEachWords
-> Check the minimum amount of characters for **each word**. The return is **`boolean`**.
+Check the minimum amount of characters for **each word**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -830,7 +859,7 @@ console.log(jagile.checkMinValueEachWords("joão d trindade", 2));
 ```
 
 ### checkMaxValueEachWords
-> Check the maximum amount of characters for **each word**. The return is **`boolean`**.
+Check the maximum amount of characters for **each word**. The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -853,7 +882,7 @@ console.log(jagile.checkMaxValueEachWords("joão trindade", 5));
 ```
 
 ### checkMinAndMaxValueEachWord
-> Check the minimum and maximum amount of characters for **each word**. The return is **boolean**.
+Check the minimum and maximum amount of characters for **each word**. The return is **boolean**.
 
 #### Syntax
 ```javascript
@@ -875,7 +904,7 @@ console.log(jagile.checkMinAndMaxValueEachWord("joão trindade", 5, 9));
 ```
 
 ### correctName
-> Remove special characters and space **except accents**. The return is **`string`**.
+Remove special characters and space **except accents**. The return is **`string`**.
 
 #### Syntax
 ```javascript
@@ -893,7 +922,7 @@ console.log(jagile.correctName("joão980_$ 78   soft"));
 ```
 
 ### getTypeof
-> Get **type** of **value**. The return is **`typeof`**.
+Get **type** of **value**. The return is **`typeof`**.
 
 #### Syntax
 ```javascript
@@ -920,7 +949,7 @@ console.log(jagile.getTypeof({}));
 ```
 
 ### getArrayElements
-> Get array elements. The return is **`array`**.
+Get array elements. The return is **`array`**.
 
 #### Syntax
 ```javascript
@@ -943,7 +972,7 @@ console.log(jagile.getArrayElements(arr, "jay"));
 ```
 
 ### getObjectProps
-> Get object props. The return is **`commonObject`**.
+Get object props. The return is **`commonObject`**.
 
 #### Syntax
 ```javascript
@@ -966,7 +995,7 @@ console.log(jagile.getObjectProps(obj, "age"));
 ```
 
 ### getOnlyNumber
-> Get only **numbers**. The return is **`number`**.
+Get only **numbers**. The return is **`number`**.
 
 #### Syntax
 ```javascript
@@ -984,7 +1013,7 @@ console.log(jagile.getOnlyNumber("jay 1df 34 soft"));
 ```
 
 ### getElementPos
-> Get the `first` position of an `array` of `objects` by **field** and **value**. The return is **`number`**.
+Get the `first` position of an `array` of `objects` by **field** and **value**. The return is **`number`**.
 
 #### Syntax
 ```javascript
@@ -1007,7 +1036,7 @@ console.log(jagile.getElementPos(arr, "id", "1"));
 ```
 
 ### generateObjectId
-> Generates a unique `objectId` like "5db7e872dab3eb3d7cc44080". The return is **`objectId`**.
+Generates a unique `objectId` like "5db7e872dab3eb3d7cc44080". The return is **`objectId`**.
 
 #### Syntax
 ```javascript
@@ -1025,7 +1054,7 @@ console.log(jagile.generateObjectId());
 ```
 
 ### removeArrayElement
-> Remove `array` elements. The return is **`array`**.
+Remove `array` elements. The return is **`array`**.
 
 #### Syntax
 ```javascript
@@ -1048,7 +1077,7 @@ console.log(jagile.removeArrayElement(arr, 1);
 ```
 
 ### removeObjectProps
-> Remove `object` properties. The return is **`object`**.
+Remove `object` properties. The return is **`object`**.
 
 #### Syntax
 ```javascript
@@ -1071,7 +1100,7 @@ console.log(jagile.removeObjectProps(obj, "username");
 ```
 
 ### uniqueArray
-> Remove **repeated** elements from **`array`**. The return is **`array`**.
+Remove **repeated** elements from **`array`**. The return is **`array`**.
 
 #### Syntax
 ```javascript
@@ -1091,7 +1120,7 @@ console.log(jagile.uniqueArray(arr));
 ```
 
 ### uniqueArrayObjectBy
-> Remove **repeated** elements from an **`array`** of **`objects`** by property. The return is **`array`**.
+Remove **repeated** elements from an **`array`** of **`objects`** by property. The return is **`array`**.
 
 #### Syntax
 ```javascript
@@ -1111,7 +1140,7 @@ console.log(jagile.uniqueArrayObjectBy(arr, "name"));
 ```
 
 ### existModule
-> Check if there is a node.js **module** like "http, jsoft-agile, etc...". The return is **`boolean`**.
+Check if there is a node.js **module** like "http, jsoft-agile, etc...". The return is **`boolean`**.
 
 #### Syntax
 ```javascript
@@ -1135,7 +1164,7 @@ console.log(jagile.existModule("kkkkkk"));
 ```
 
 ### wallFilters
-> Validates or filters all data according to a **rule**. The return is **`commonObject`**.
+Validates or filters all data according to a **rule**. The return is **`commonObject`**.
 
 #### Syntax
 ```javascript
@@ -1239,7 +1268,7 @@ module.exports = validate;
 ```javascript
 const jagile = require("jsoft-agile");
 const myRules = require("./rules");
-const myValidations  = require("./lib/validates");
+const myValidations  = require("./validates");
 
 // example
 console.log(
@@ -1281,8 +1310,8 @@ console.log(
       sex: 3,
       country: "china"
     },
-    rules,
-    validations: validate
+    rules: myRules,
+    validations: myValidations
   })
 );
 > 
