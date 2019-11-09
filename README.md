@@ -6,7 +6,9 @@ A [node.js](https://nodejs.org/en/) module that provides a collection of ready-m
 
 ## Prerequisites
 This module was developed in node.js v10.16.3.
-> We recommend using node.js v10.x or higher.
+```
+We recommend using node.js v10.x or higher.
+```
 
 ## Installation
 This is a [Node.js](https://nodejs.org/en/) module available through the npm registry.
