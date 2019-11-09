@@ -41,7 +41,10 @@ import jagile from "jsoft-agile"
 
 #### Addeds in version 2.x 
 
+###### 2.1.0
 * [**`isAll`**](#isAll) *check if all elements of `array` are `typeof` passed*
+
+###### 2.0.0
 * [**`inArrayAnyValue`**](#inArrayAnyValue) *check if any value exists inside `array`*
 * [**`inObjectAnyProp`**](#inObjectAnyProp) *check if any prop exists inside `object`*
 * [**`hasValueAllProps`**](#hasValueAllProps) *check if all **props** have **value***
