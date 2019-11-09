@@ -41,54 +41,54 @@ import jagile from "jsoft-agile"
 
 #### Addeds in version 2.x 
 
-* [**`inArrayAnyValue`**](###inArrayAnyValue) *check if any value exists inside `array`*
-* [**`inObjectAnyProp`**](###inObjectAnyProp) *check if any prop exists inside `object`*
-* [**`hasValueAllProps`**](###hasValueAllProps) *check if all **props** have **value***
-* [**`getTypeof`**](###getTypeof) *get **type** of **value** like "commonNumber, commonObject, array, function, etc..."*
-* [**`wallFilters`**](###wallFilters) *validates or filters all data according to a **rule***
+* [**`inArrayAnyValue`**](#inArrayAnyValue) *check if any value exists inside `array`*
+* [**`inObjectAnyProp`**](#inObjectAnyProp) *check if any prop exists inside `object`*
+* [**`hasValueAllProps`**](#hasValueAllProps) *check if all **props** have **value***
+* [**`getTypeof`**](#getTypeof) *get **type** of **value** like "commonNumber, commonObject, array, function, etc..."*
+* [**`wallFilters`**](#wallFilters) *validates or filters all data according to a **rule***
 
 > 5 new features added
 
 
 #### Addeds in version 1.x
 
-* [**`isString`**](###isString) *check if the passed value is a `string`*
-* [**`isAllString`**](###isAllString) *check if all elements of an array are `strings`*
-* [**`isNumber`**](###isNumber) *check if the passed value is a `number`*
-* [**`isCommonNumber`**](###isCommonNumber) *checks if the passed value is a `commonNumber` like "-1, 0, 1, 1.2, etc..."*
-* [**`isAllCommonNumber`**](###isAllCommonNumber) *check if all elements of an array are `commonNumber` like "-1, 0, 1, 1.2, etc..."*
-* [**`isBoolean`**](###isBoolean) *check if the passed value is a `boolean`*
-* [**`isAllBoolean`**](###isAllBoolean) *check if all elements of an array are `boolean`*
-* [**`isObject`**](###isObject) *check if the passed value is a `object` like "null, {}, etc..."*
-* [**`isObjectId`**](###isObjectId) *check if the passed value is a common `objectId` like "5db7e872dab3eb3d7cc44080"*
-* [**`isAllObjectId`**](###isAllObjectId) *check if all elements of an array are `objectId` like "5db7e872dab3eb3d7cc44080*
-* [**`isCommonObject`**](###isCommonObject) *Check if the passed value is a `commonObject` like "{}"*
-* [**`isAllCommonObject`**](###isAllCommonObject) *check if all elements of an array are `commonObject` like "{}"*
-* [**`isArray`**](###isArray) *check if the passed value is an `array`*
-* [**`isAllArray`**](###isAllArray) *check if all elements of an array are `array`*
-* [**`isEmail`**](###isEmail) *check if the passed value is an `email`*
-* [**`isUsername`**](###isUsername) *check if the passed value is a `username` like "_joao99, jay99_, jay, etc..."*
-* [**`isPhoneNumber`**](###isPhoneNumber) *check if the passed value is an international **phone number** like "+244 913 056 212, +555 555 1234"*
-* [**`inArray`**](###inArray) *check if value exists inside `array`*
-* [**`inObject`**](###inObject) *check if prop exists inside `object`*
-* [**`hasValue`**](###hasValue) *check if has some **value***
-* [**`hasAllValues`**](###hasAllValues) *check if all elements of an array has **value***
-* [**`justifySpaceWords`**](###justifySpaceWords) *justify space **between words***
-* [**`capitalizeText`**](###capitalizeText) *make the first letters of **words capitalized***
-* [**`checkMinValueEachWords`**](###checkMinValueEachWords) *check the minimum amount of characters for **each word***
-* [**`checkMaxValueEachWords`**](###checkMaxValueEachWords) *check the maximum amount of characters for **each word***
-* [**`checkMinAndMaxValueEachWord`**](###checkMinAndMaxValueEachWord) *check the minimum and maximum amount of characters for **each word***
-* [**`correctName`**](###correctName) *remove special characters and space **except accents***
-* [**`getArrayElements`**](###getArrayElements) *get `array` **elements***
-* [**`getObjectProps`**](###getObjectProps) *get `object` **props***
-* [**`getOnlyNumber`**](###getOnlyNumber) *get only **numbers***
-* [**`getElementPos`**](###getElementPos) *get the **first** position of an `array` of `objects` by **field** and **value***
-* [**`generateObjectId`**](###generateObjectId) *generates a unique `objectId` like "5db7e872dab3eb3d7cc44080"*
-* [**`removeArrayElements`**](###removeArrayElements) *remove `array` elements*
-* [**`removeObjectProps`**](###removeObjectProps) *remove `object` properties*
-* [**`uniqueArray`**](###uniqueArray) *remove **repeated** elements from `array`*
-* [**`uniqueArrayObjectBy`**](###uniqueArrayObjectBy) *remove **repeated** elements from an `array` of `objects` by property*
-* [**`existModule`**](###existModule)  *check if there is a node.js **module** like "http, jsoft-agile, etc..."*
+* [**`isString`**](#isString) *check if the passed value is a `string`*
+* [**`isAllString`**](#isAllString) *check if all elements of an array are `strings`*
+* [**`isNumber`**](#isNumber) *check if the passed value is a `number`*
+* [**`isCommonNumber`**](#isCommonNumber) *checks if the passed value is a `commonNumber` like "-1, 0, 1, 1.2, etc..."*
+* [**`isAllCommonNumber`**](#isAllCommonNumber) *check if all elements of an array are `commonNumber` like "-1, 0, 1, 1.2, etc..."*
+* [**`isBoolean`**](#isBoolean) *check if the passed value is a `boolean`*
+* [**`isAllBoolean`**](#isAllBoolean) *check if all elements of an array are `boolean`*
+* [**`isObject`**](#isObject) *check if the passed value is a `object` like "null, {}, etc..."*
+* [**`isObjectId`**](#isObjectId) *check if the passed value is a common `objectId` like "5db7e872dab3eb3d7cc44080"*
+* [**`isAllObjectId`**](#isAllObjectId) *check if all elements of an array are `objectId` like "5db7e872dab3eb3d7cc44080*
+* [**`isCommonObject`**](#isCommonObject) *Check if the passed value is a `commonObject` like "{}"*
+* [**`isAllCommonObject`**](#isAllCommonObject) *check if all elements of an array are `commonObject` like "{}"*
+* [**`isArray`**](#isArray) *check if the passed value is an `array`*
+* [**`isAllArray`**](#isAllArray) *check if all elements of an array are `array`*
+* [**`isEmail`**](#isEmail) *check if the passed value is an `email`*
+* [**`isUsername`**](#isUsername) *check if the passed value is a `username` like "_joao99, jay99_, jay, etc..."*
+* [**`isPhoneNumber`**](#isPhoneNumber) *check if the passed value is an international **phone number** like "+244 913 056 212, +555 555 1234"*
+* [**`inArray`**](#inArray) *check if value exists inside `array`*
+* [**`inObject`**](#inObject) *check if prop exists inside `object`*
+* [**`hasValue`**](#hasValue) *check if has some **value***
+* [**`hasAllValues`**](#hasAllValues) *check if all elements of an array has **value***
+* [**`justifySpaceWords`**](#justifySpaceWords) *justify space **between words***
+* [**`capitalizeText`**](#capitalizeText) *make the first letters of **words capitalized***
+* [**`checkMinValueEachWords`**](#checkMinValueEachWords) *check the minimum amount of characters for **each word***
+* [**`checkMaxValueEachWords`**](#checkMaxValueEachWords) *check the maximum amount of characters for **each word***
+* [**`checkMinAndMaxValueEachWord`**](#checkMinAndMaxValueEachWord) *check the minimum and maximum amount of characters for **each word***
+* [**`correctName`**](#correctName) *remove special characters and space **except accents***
+* [**`getArrayElements`**](#getArrayElements) *get `array` **elements***
+* [**`getObjectProps`**](#getObjectProps) *get `object` **props***
+* [**`getOnlyNumber`**](#getOnlyNumber) *get only **numbers***
+* [**`getElementPos`**](#getElementPos) *get the **first** position of an `array` of `objects` by **field** and **value***
+* [**`generateObjectId`**](#generateObjectId) *generates a unique `objectId` like "5db7e872dab3eb3d7cc44080"*
+* [**`removeArrayElements`**](#removeArrayElements) *remove `array` elements*
+* [**`removeObjectProps`**](#removeObjectProps) *remove `object` properties*
+* [**`uniqueArray`**](#uniqueArray) *remove **repeated** elements from `array`*
+* [**`uniqueArrayObjectBy`**](#uniqueArrayObjectBy) *remove **repeated** elements from an `array` of `objects` by property*
+* [**`existModule`**](#existModule)  *check if there is a node.js **module** like "http, jsoft-agile, etc..."*
 
 > 37 functions ready for you
 
