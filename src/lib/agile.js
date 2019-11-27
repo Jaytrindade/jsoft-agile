@@ -1,14 +1,16 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const isString = value => typeof value === "string";
-const isNumber = value => typeof value === "number";
+export const isString = value => typeof value === "string";
+export const isNumber = value => typeof value === "number";
+
+const nameAllowedChar = `ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöøùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƠơƯưǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǞǟǠǡǦǧǨǩǪǫǬǭǰǴǵǸǹǺǻǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚțȞȟȦȧȨȩȪȫȬȭȮȯȰȱȲȳʰʲʳʷʸˡˢˣḀḁḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴḵḶḷḸḹḺḻḼḽḾḿṀṁṂṃṄṅṆṇṈṉṊṋṌṍṎṏṐṑṒṓṔṕṖṗṘṙṚṛṜṝṞṟṠṡṢṣṤṥṦṧṨṩṪṫṬṭṮṯṰṱṲṳṴṵṶṷṸṹṺṻṼṽṾṿẀẁẂẃẄẅẆẇẈẉẊẋẌẍẎẏẐẑẒẓẔẕẖẗẘẙẛẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ`;
 
 /**
  * check if is common number |
  * ex: 0-9 ? true : false
  * @param {*} value
  */
-const isCommonNumber = value => {
+export const isCommonNumber = value => {
   if (isNumber(value)) {
     let aux = Number(value).toString();
     if (aux !== "NaN") return true;
@@ -16,16 +18,16 @@ const isCommonNumber = value => {
   }
   return false;
 };
-const isBoolean = value => typeof value === "boolean";
-const isObject = value => typeof value === "object";
-const isArray = value => Array.isArray(value);
-const isObjectId = value => mongoose.Types.ObjectId.isValid(value);
-const isPhoneNumber = value => {
+export const isBoolean = value => typeof value === "boolean";
+export const isObject = value => typeof value === "object";
+export const isArray = value => Array.isArray(value);
+export const isObjectId = value => mongoose.Types.ObjectId.isValid(`${value}`);
+export const isPhoneNumber = value => {
   let regex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
   if (regex.test(value)) return true;
   return false;
 };
-const isEmail = value => {
+export const isEmail = value => {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     value.trim()
   );
@@ -36,8 +38,26 @@ const isEmail = value => {
  * ex: [\_joao99, jay99_, jay] = true
  * @param {*} value
  */
-const isUsername = value => {
-  const regExp = /^[_]?[a-z]+[a-z0-9]*[_]?$/gi;
+export const isName = value => {
+  const regExp = new RegExp(
+    `^(([A-Za-z${nameAllowedChar}]+[\\-\\']?)*([A-Za-z${nameAllowedChar}]+)?\\s?)+([A-Za-z${nameAllowedChar}]+[\\-\\']?)*([A-Za-z${nameAllowedChar}]+)?$`,
+    "i"
+  );
+  return regExp.test(value);
+};
+
+/**
+ * check if value is an username |
+ * ex: [\_joao99, jay99_, jay] = true
+ * @param {*} value
+ * @param {number} limitChar - if you need to specify the maximum amount of characters
+ */
+export const isUsername = (value, limitChar) => {
+  const regExp = new RegExp(
+    `^([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\\.(?!\\.))){0,${limitChar ||
+      ""}}(?:[A-Za-z0-9_]))?)$`,
+    "gim"
+  );
   return regExp.test(value);
 };
 
@@ -46,7 +66,7 @@ const isUsername = value => {
  * ex: {} = true : false
  * @param {*} value
  */
-const isCommonObject = value => {
+export const isCommonObject = value => {
   if (isObject(value)) {
     let aux = JSON.stringify(value).split("");
     if (aux[0] === "{") return true;
@@ -59,7 +79,7 @@ const isCommonObject = value => {
  * check if has some value
  * @param {*} value
  */
-const hasValue = value => {
+export const hasValue = value => {
   if (isString(value) || isArray(value)) return value.length > 0;
   if (isCommonNumber(value) || isBoolean(value) || isObjectId(value))
     return true;
@@ -74,7 +94,7 @@ const hasValue = value => {
  * ex-2: [1, "", true] = false |
  * @param {array} value
  */
-const hasAllValues = value => {
+export const hasAllValues = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!hasValue(element)) return false;
@@ -90,7 +110,7 @@ const hasAllValues = value => {
  * @param {object} obj - common object
  * @param {array} values - string array
  */
-const hasValueAllProps = (obj, values) => {
+export const hasValueAllProps = (obj, values) => {
   let except = [];
   if (hasAllValues([obj, values]) && isCommonObject(obj) && isArray(values)) {
     for (const element of values) {
@@ -106,7 +126,7 @@ const hasValueAllProps = (obj, values) => {
  * @param {array} array
  * @param {*} value - It's can be an array
  */
-const inArray = (array, value) => {
+export const inArray = (array, value) => {
   if (hasAllValues([array, value]) && isArray(array)) {
     if (isArray(value)) {
       for (const element of value) {
@@ -124,7 +144,7 @@ const inArray = (array, value) => {
  * @param {array} array
  * @param {array} value - only array
  */
-const inArrayAnyValue = (array, value) => {
+export const inArrayAnyValue = (array, value) => {
   let exist = [],
     notExist = [];
   if (hasAllValues([array, value]) && isArray(array)) {
@@ -135,13 +155,13 @@ const inArrayAnyValue = (array, value) => {
       }
       return {
         ok: hasValue(exist),
-        complele: hasValue(exist) && !hasValue(notExist) ? true : false,
+        complete: hasValue(exist) && !hasValue(notExist) ? true : false,
         exist,
         notExist
       };
-    } else return { ok: false, complele: false, exist, notExist };
+    } else return { ok: false, complete: false, exist, notExist };
   }
-  return { ok: false, complele: false, exist, notExist };
+  return { ok: false, complete: false, exist, notExist };
 };
 
 /**
@@ -149,7 +169,7 @@ const inArrayAnyValue = (array, value) => {
  * @param {object} obj - object
  * @param {*} value - It's can be an array
  */
-const inObject = (obj, value) => {
+export const inObject = (obj, value) => {
   if (hasAllValues([obj, value]) && isCommonObject(obj)) {
     if (isArray(value)) {
       for (const element of value) {
@@ -167,7 +187,7 @@ const inObject = (obj, value) => {
  * @param {object} obj - object
  * @param {array} values - Only array
  */
-const inObjectAnyProp = (obj, values) => {
+export const inObjectAnyProp = (obj, values) => {
   let exist = [],
     notExist = [];
   if (hasAllValues([obj, values]) && isCommonObject(obj)) {
@@ -178,20 +198,20 @@ const inObjectAnyProp = (obj, values) => {
       }
       return {
         ok: hasValue(exist),
-        complele: hasValue(exist) && !hasValue(notExist) ? true : false,
+        complete: hasValue(exist) && !hasValue(notExist) ? true : false,
         exist,
         notExist
       };
-    } else return { ok: false, complele: false, exist, notExist };
+    } else return { ok: false, complete: false, exist, notExist };
   }
-  return { ok: false, complele: false, exist, notExist };
+  return { ok: false, complete: false, exist, notExist };
 };
 
 /**
  * check if all elements of array are strings
  * @param {array} value
  */
-const isAllString = value => {
+export const isAllString = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isString(element)) return false;
@@ -206,7 +226,7 @@ const isAllString = value => {
  * check if all elements of array are common numbers
  * @param {array} value
  */
-const isAllCommonNumber = value => {
+export const isAllCommonNumber = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isCommonNumber(element)) return false;
@@ -221,7 +241,7 @@ const isAllCommonNumber = value => {
  * check if all elements of array are arrays
  * @param {array} value
  */
-const isAllArray = value => {
+export const isAllArray = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isArray(element)) return false;
@@ -235,7 +255,7 @@ const isAllArray = value => {
  * check if all elements of array are common objects
  * @param {array} value
  */
-const isAllCommonObject = value => {
+export const isAllCommonObject = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isCommonObject(element)) return false;
@@ -249,7 +269,7 @@ const isAllCommonObject = value => {
  * check if all elements of array are objectIds
  * @param {array} value
  */
-const isAllObjectId = value => {
+export const isAllObjectId = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isObjectId(element)) return false;
@@ -263,7 +283,7 @@ const isAllObjectId = value => {
  * check if all elements of array are booleans
  * @param {array} value
  */
-const isAllBoolean = value => {
+export const isAllBoolean = value => {
   if (hasValue(value) && isArray(value)) {
     for (const element of value) {
       if (!isBoolean(element)) return false;
@@ -280,7 +300,7 @@ const isAllBoolean = value => {
  * @param {array} values
  * @param {string} type - typeof
  */
-const isAll = (values, type) => {
+export const isAll = (values, type) => {
   if (hasValue(values) && isArray(values) && isString(type)) {
     for (const element of values) {
       if (getTypeof(element) !== type) return false;
@@ -295,7 +315,7 @@ const isAll = (values, type) => {
  * ex: 'joão  trindade' = 'joão trindade'
  * @param {string} value
  */
-const justifySpaceWords = value => {
+export const justifySpaceWords = value => {
   if (isString(value) && hasValue(value)) {
     const regExp = /\s+/gi;
     let words = value.replace(regExp, " ");
@@ -310,7 +330,7 @@ const justifySpaceWords = value => {
  * @param {string} value
  * @param {boolean} all - true ? "capitalize all words": "capitalize the first word"
  */
-const capitalizeText = (value, all = false) => {
+export const capitalizeText = (value, all = false) => {
   if (isString(value) && hasValue(value)) {
     if (!all) return value.charAt(0).toUpperCase() + value.slice(1);
     else {
@@ -332,7 +352,7 @@ const capitalizeText = (value, all = false) => {
  *  @param {string} value - no space char
  *  @param {number} min - positive number
  */
-const checkMinValueEachWords = (value, min) => {
+export const checkMinValueEachWords = (value, min) => {
   if (hasAllValues([value, min]) && isString(value) && isCommonNumber(min)) {
     value = value.trim();
     const regExp = /[^\s]+/gi;
@@ -356,7 +376,7 @@ const checkMinValueEachWords = (value, min) => {
  *  @param {string} value - no space char
  *  @param {number} max - positive number
  */
-const checkMaxValueEachWords = (value, max) => {
+export const checkMaxValueEachWords = (value, max) => {
   if (hasAllValues([value, max]) && isString(value) && isCommonNumber(max)) {
     value = value.trim();
     const regExp = /[^\s]+/gi;
@@ -379,7 +399,7 @@ const checkMaxValueEachWords = (value, max) => {
  * @param {number} min - min value for each word
  * @param {number} max - max value for each word
  */
-const checkMinAndMaxValueEachWord = (value, min, max) => {
+export const checkMinAndMaxValueEachWord = (value, min, max) => {
   if (
     hasAllValues([value, min, max]) &&
     isString(value) &&
@@ -407,22 +427,27 @@ const checkMinAndMaxValueEachWord = (value, min, max) => {
  * ex: 'joão980_$ 78 soft' = 'joão soft'
  * @param {*} value
  */
-const correctName = value => {
-  const regExp = /[^a-zA-ZÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöøùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƠơƯưǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǞǟǠǡǦǧǨǩǪǫǬǭǰǴǵǸǹǺǻǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚțȞȟȦȧȨȩȪȫȬȭȮȯȰȱȲȳʰʲʳʷʸˡˢˣḀḁḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴḵḶḷḸḹḺḻḼḽḾḿṀṁṂṃṄṅṆṇṈṉṊṋṌṍṎṏṐṑṒṓṔṕṖṗṘṙṚṛṜṝṞṟṠṡṢṣṤṥṦṧṨṩṪṫṬṭṮṯṰṱṲṳṴṵṶṷṸṹṺṻṼṽṾṿẀẁẂẃẄẅẆẇẈẉẊẋẌẍẎẏẐẑẒẓẔẕẖẗẘẙẛẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ]/gi;
-  let spliteds = value.split(" ");
-  for (const index in spliteds) {
-    spliteds[index] = spliteds[index].replace(regExp, "");
+export const correctName = value => {
+  const regExp = new RegExp(`[^a-zA-Z-'${nameAllowedChar}]`, "gi"),
+    regExp2 = /[']{2,}/gi,
+    regExp3 = /[\-]{2,}/gi;
+
+  let splitted = value.split(" ");
+  for (const index in splitted) {
+    splitted[index] = splitted[index].replace(regExp, "");
+    splitted[index] = splitted[index].replace(regExp2, "'");
+    splitted[index] = splitted[index].replace(regExp3, "-");
   }
-  return justifySpaceWords(spliteds.join(" "));
+  return justifySpaceWords(splitted.join(" "));
 };
 
 /**
  * remove elements of array
  * @param {array} array
- * @param {*} values - it's can't be an array
+ * @param {*} values - it's can be an array
  */
-const removeArrayElements = (array, values) => {
-  if (hasAllValues(array, values) && isArray(array)) {
+export const removeArrayElements = (array, values) => {
+  if (hasValue(array) && isArray(array)) {
     if (isArray(values)) {
       for (const element of values) {
         let pos = array.indexOf(element);
@@ -442,7 +467,7 @@ const removeArrayElements = (array, values) => {
  * get type of value
  * @param {*} value
  */
-const getTypeof = value => {
+export const getTypeof = value => {
   if (hasValue(value)) {
     if (isString(value)) return "string";
     if (isCommonNumber(value)) return "commonNumber";
@@ -459,9 +484,9 @@ const getTypeof = value => {
 /**
  * get elements of array
  * @param {array} array
- * @param {*} values - it's can't be an array
+ * @param {*} values - it's can be an array
  */
-const getArrayElements = (array, values) => {
+export const getArrayElements = (array, values) => {
   if (hasAllValues(array, values) && isArray(array)) {
     if (isArray(values)) {
       let newArray = [];
@@ -484,7 +509,7 @@ const getArrayElements = (array, values) => {
  * @param {object} obj - object
  * @param {*} values - It's can't be an array
  */
-const removeObjectProps = (obj, values) => {
+export const removeObjectProps = (obj, values) => {
   if (hasAllValues([obj, values]) && isCommonObject(obj)) {
     if (isArray(values)) {
       for (let i = 0; i < values.length; i++) {
@@ -502,7 +527,7 @@ const removeObjectProps = (obj, values) => {
  * @param {object} obj - object
  * @param {*} values - It's can't be an array
  */
-const getObjectProps = (obj, values) => {
+export const getObjectProps = (obj, values) => {
   if (hasAllValues([obj, values]) && isCommonObject(obj)) {
     if (isArray(values)) {
       let newObj = {};
@@ -524,7 +549,7 @@ const getObjectProps = (obj, values) => {
  * ex: "jay 1df 34 soft" = 134
  * @param {string} value
  */
-const getOnlyNumber = value => {
+export const getOnlyNumber = value => {
   const regExp = /[^0-9]/gi;
   let val = value.replace(regExp, "");
   return Number(val);
@@ -532,8 +557,9 @@ const getOnlyNumber = value => {
 
 /**
  * generates a unique objectId like "5db7e872dab3eb3d7cc44080"
+ * @param {string} value - commonNumber | ObjectId
  */
-const generateObjectId = () => new mongoose.Types.ObjectId();
+export const generateObjectId = value => new mongoose.Types.ObjectId(value);
 
 /**
  * get the first position of an array of objects by field and value
@@ -541,7 +567,7 @@ const generateObjectId = () => new mongoose.Types.ObjectId();
  * @param {string} field - object prop
  * @param {*} value - value prop
  */
-const getElementPos = (array, field, value) => {
+export const getElementPos = (array, field, value) => {
   if (
     hasAllValues([array, field, value]) &&
     isArray(array) &&
@@ -561,7 +587,7 @@ const getElementPos = (array, field, value) => {
  * Remove repeated elements from array
  * @param {array} array
  */
-const uniqueArray = array => {
+export const uniqueArray = array => {
   if (hasValue(array) && isArray(array))
     return array.filter((value, index, self) => self.indexOf(value) === index);
   return array;
@@ -572,7 +598,7 @@ const uniqueArray = array => {
  * @param {array} array
  * @param {*} value - It can't be a iterator value
  */
-const uniqueArrayObjectBy = (array, value) => {
+export const uniqueArrayObjectBy = (array, value) => {
   if (hasAllValues([array, value]) && isArray(array))
     return array.filter((val, index, self) => {
       return (
@@ -587,7 +613,7 @@ const uniqueArrayObjectBy = (array, value) => {
  * check if exist module
  * @param {string} value - module name like "http"
  */
-const existModule = value => {
+export const existModule = value => {
   if (hasValue(value) && isString(value)) {
     try {
       require.resolve(value);
@@ -728,10 +754,9 @@ const putRules = config => {
 // on version 2
 /**
  * validates or filters all data according to a rule
- * @param {object} datas - Object with: {service: "string", data: "commonObject", rules: "commonObject", validations: ?"function"}
+ * @param {object} data - Object with: {service: "string", data: "commonObject", rules: "commonObject", validations: ?"function"}
  */
-const wallFilters = datas => {
-  let { service, data, rules, validations } = datas;
+export const wallFilters = ({ service, data, rules, validations }) => {
   if (
     hasAllValues([service, data, rules]) &&
     isString(service) &&
@@ -769,50 +794,4 @@ const wallFilters = datas => {
   }
 
   return { ok: false, exec: false, message: "I don't know what to do!" };
-};
-
-module.exports = {
-  isString,
-  isAllString,
-  isNumber,
-  isCommonNumber,
-  isAllCommonNumber,
-  isBoolean,
-  isAllBoolean,
-  isArray,
-  isAllArray,
-  isObject,
-  isCommonObject,
-  isAllCommonObject,
-  isObjectId,
-  isAllObjectId,
-  isAll,
-  isPhoneNumber,
-  isEmail,
-  isUsername,
-  inArray,
-  inArrayAnyValue,
-  inObject,
-  inObjectAnyProp,
-  hasValue,
-  hasAllValues,
-  hasValueAllProps,
-  justifySpaceWords,
-  capitalizeText,
-  checkMinValueEachWords,
-  checkMaxValueEachWords,
-  checkMinAndMaxValueEachWord,
-  correctName,
-  getTypeof,
-  getArrayElements,
-  getElementPos,
-  getObjectProps,
-  getOnlyNumber,
-  generateObjectId,
-  removeArrayElements,
-  removeObjectProps,
-  uniqueArray,
-  uniqueArrayObjectBy,
-  existModule,
-  wallFilters
 };

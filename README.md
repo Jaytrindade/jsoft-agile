@@ -30,18 +30,30 @@ $ npm install --save-dev jsoft-agile
 you can load this module like this:
 
 ```javascript 
-const jagile = require("jsoft-agile") 
+const jagile = require("jsoft-agile");
+
+or
+
+const {wallFilters, ...} = require("jsoft-agile")
 ```
 
 or like this:
 
 ```javascript 
-import jagile from "jsoft-agile" 
+import jagile from "jsoft-agile";
+
+or
+
+import {inObject, ...} from "jsoft-agile";
 ```
 
 ## What jsoft-agile offers us?
 
 #### Addeds in version 2.x 
+###### 2.2.0
+* [**`isName`**](#isName) *check if the passed value is a name*
+
+**Improvements:** `correctName`, `isUsername`, `inArrayAnyValue`, `inObjectAnyProp` and `removeArrayElements`
 
 ###### 2.1.0
 * [**`isAll`**](#isAll) *check if all elements of `array` are `typeof` passed*
@@ -572,7 +584,7 @@ Check if the passed value is a **`username`** like "_joao99, jay99_, jay, etc...
 
 #### Syntax
 ```javascript
-isUsername: (value: any) => boolean
+isUsername: (value: any, limitChar: ?number) => boolean
 ``` 
 
 #### Use
@@ -585,6 +597,33 @@ console.log(jagile.isUsername("@jay"));
 > false
 
 console.log(jagile.isUsername("12jay"));
+> false
+
+
+// and so on...
+```
+
+### isName
+Check if the passed value is a correct name. The return is **`boolean`**.
+
+#### Syntax
+```javascript
+isName: (value: any) => boolean
+``` 
+
+#### Use
+```javascript
+// example
+console.log(jagile.isName("Jay Trindade J'soft"));
+> true
+
+console.log(jagile.isName("João soft-dev J'soft"));
+> true
+
+console.log(jagile.isName("Jay 234 Soft"));
+> false
+
+console.log(jagile.isName("Jay Trindade jay_soft"));
 > false
 
 
@@ -919,8 +958,8 @@ correctName: (value: string) => string
 #### Use
 ```javascript
 // example
-console.log(jagile.correctName("joão980_$ 78   soft"));
-> joão soft
+console.log(jagile.correctName("João980_$ 78 Tri_ndade   J'soft"));
+// joão Trindade J'soft
 
 
 // and so on...
@@ -1196,7 +1235,7 @@ const rules = {
       },
       username: { type: "string", validate: "username" },
       sex: { type: "commonNumber", required: true, accepts: [1, 2] },
-      country: { type: "string", accepts: ["angola", "brasil"] },
+      country: { type: "string", accepts: ["usa", "china"] },
       state: { type: "string", needFields: ["country"] }
     },
     config: {
@@ -1250,19 +1289,11 @@ const username = value => {
   else return { ok: false, message: "invalid username" };
 };
 
-// validate email
-const email = value => {
-  value = value.trim();
-  if (jagile.isEmail(value)) return { ok: true, value: value };
-  else return { ok: false, message: "invalid email" };
-};
-
 // all validates
 const validate = data => {
   let { type, value } = data;
   if (type == "name") return name(value);
   if (type == "username") return username(value);
-  if (type == "email") return email(value);
   return null
 };
 
@@ -1282,10 +1313,9 @@ console.log(
     data: {
       name: "jay trindade",
       username: "jaytrindade",
-      email: "soft",
       age: 20,
-      sex: 2,
-      country: "angola"
+      sex: 1,
+      country: "usa"
     },
     rules: myRules,
     validations: myValidations
@@ -1298,8 +1328,8 @@ console.log(
     data: { 
         Name: 'jay trindade',
         UserName: 'jaytrindade',
-        Sex: 2,
-        Country: 'angola' 
+        Sex: 1,
+        Country: 'usa' 
     } 
 }
 >
@@ -1313,7 +1343,7 @@ console.log(
       username: "@jay",
       age: 19,
       sex: 3,
-      country: "china"
+      country: "bbb"
     },
     rules: myRules,
     validations: myValidations
@@ -1339,6 +1369,9 @@ console.log(
 
 // and so on...
 ```
+
+## Recommendations
+* [`jsoft-react-view`](https://www.npmjs.com/package/jsoft-react-view)
 
 ## Contributing
 Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.

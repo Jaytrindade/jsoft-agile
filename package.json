@@ -2,16 +2,19 @@
   "name": "jsoft-agile",
   "version": "2.1.0",
   "description": "A Node.js module that provides a collection of ready-made functions used on large systems for their development.",
-  "main": "./bin/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "directories": {
-    "lib": "lib",
-    "bin": "bin"
+    "dist": "dist"
   },
   "bin": {
-    "jsoft-agile": "bin/index.js"
+    "jsoft-agile": "dist/index.js"
   },
   "scripts": {
-    "test": "nodemon test.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js --ignore __tests__",
+    "test": "jest --watch",
+    "publish:npm": "rm -rf dist && mkdir dist && sucrase ./src -d ./dist --transforms imports"
   },
   "repository": {
     "type": "git",
@@ -22,11 +25,14 @@
     "jsoft",
     "agile",
     "npm",
-    "package",
+    "lodash",
+    "filters",
+    "validates",
+    "functions",
     "jsoft-agile",
     "nodejs agile",
     "ready",
-    "tamplate"
+    "template"
   ],
   "author": "João Trindade <joaotrindade.soft@gmail.com>",
   "license": "MIT",
@@ -40,5 +46,10 @@
   "peerDependencies": {
     "mongoose": "^5.7.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@sucrase/jest-plugin": "^2.0.0",
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.1",
+    "sucrase": "^3.10.1"
+  }
 }
