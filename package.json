@@ -1,6 +1,6 @@
 {
   "name": "jsoft-agile",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "A Node.js module that provides a collection of ready-made functions used on large systems for their development.",
   "main": "dist/index.js",
   "module": "dist/index.js",
