@@ -5,4 +5,3 @@ name = jagile.correctName(name);
 
 console.log(name);
 // João Js-Developer J'soft
-console.log(jagile.isName(name));

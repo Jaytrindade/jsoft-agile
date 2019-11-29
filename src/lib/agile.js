@@ -1,9 +1,8 @@
 import mongoose from "mongoose";
+const nameAllowedChar = `ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöøùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƠơƯưǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǞǟǠǡǦǧǨǩǪǫǬǭǰǴǵǸǹǺǻǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚțȞȟȦȧȨȩȪȫȬȭȮȯȰȱȲȳʰʲʳʷʸˡˢˣḀḁḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴḵḶḷḸḹḺḻḼḽḾḿṀṁṂṃṄṅṆṇṈṉṊṋṌṍṎṏṐṑṒṓṔṕṖṗṘṙṚṛṜṝṞṟṠṡṢṣṤṥṦṧṨṩṪṫṬṭṮṯṰṱṲṳṴṵṶṷṸṹṺṻṼṽṾṿẀẁẂẃẄẅẆẇẈẉẊẋẌẍẎẏẐẑẒẓẔẕẖẗẘẙẛẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ`;
 
 export const isString = value => typeof value === "string";
 export const isNumber = value => typeof value === "number";
-
-const nameAllowedChar = `ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝàáâãäåçèéêëìíîïðñòóôõöøùúûüýÿĀāĂăĄąĆćĈĉĊċČčĎďĐđĒēĔĕĖėĘęĚěĜĝĞğĠġĢģĤĥĦħĨĩĪīĬĭĮįİĴĵĶķĹĺĻļĽľĿŀŁłŃńŅņŇňŌōŎŏŐőŔŕŖŗŘřŚśŜŝŞşŠšŢţŤťŨũŪūŬŭŮůŰűŲųŴŵŶŷŸŹźŻżŽžſƠơƯưǍǎǏǐǑǒǓǔǕǖǗǘǙǚǛǜǞǟǠǡǦǧǨǩǪǫǬǭǰǴǵǸǹǺǻǾǿȀȁȂȃȄȅȆȇȈȉȊȋȌȍȎȏȐȑȒȓȔȕȖȗȘșȚțȞȟȦȧȨȩȪȫȬȭȮȯȰȱȲȳʰʲʳʷʸˡˢˣḀḁḂḃḄḅḆḇḈḉḊḋḌḍḎḏḐḑḒḓḔḕḖḗḘḙḚḛḜḝḞḟḠḡḢḣḤḥḦḧḨḩḪḫḬḭḮḯḰḱḲḳḴḵḶḷḸḹḺḻḼḽḾḿṀṁṂṃṄṅṆṇṈṉṊṋṌṍṎṏṐṑṒṓṔṕṖṗṘṙṚṛṜṝṞṟṠṡṢṣṤṥṦṧṨṩṪṫṬṭṮṯṰṱṲṳṴṵṶṷṸṹṺṻṼṽṾṿẀẁẂẃẄẅẆẇẈẉẊẋẌẍẎẏẐẑẒẓẔẕẖẗẘẙẛẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹ`;
 
 /**
  * check if is common number |
@@ -11,11 +10,7 @@ const nameAllowedChar = `ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜ�
  * @param {*} value
  */
 export const isCommonNumber = value => {
-  if (isNumber(value)) {
-    let aux = Number(value).toString();
-    if (aux !== "NaN") return true;
-    return false;
-  }
+  if (isNumber(value) && !Number.isNaN(value)) return true;
   return false;
 };
 export const isBoolean = value => typeof value === "boolean";
@@ -94,15 +89,7 @@ export const hasValue = value => {
  * ex-2: [1, "", true] = false |
  * @param {array} value
  */
-export const hasAllValues = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!hasValue(element)) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const hasAllValues = value => value.every(hasValue);
 
 //on version 2
 /**
@@ -112,13 +99,10 @@ export const hasAllValues = value => {
  */
 export const hasValueAllProps = (obj, values) => {
   let except = [];
-  if (hasAllValues([obj, values]) && isCommonObject(obj) && isArray(values)) {
-    for (const element of values) {
-      if (!hasValue(obj[element])) except.push(element);
-    }
-    return { ok: !hasValue(except), except };
+  for (const element of values) {
+    if (!hasValue(obj[element])) except.push(element);
   }
-  return { ok: false, except };
+  return { ok: !hasValue(except), except };
 };
 
 /**
@@ -127,15 +111,12 @@ export const hasValueAllProps = (obj, values) => {
  * @param {*} value - It's can be an array
  */
 export const inArray = (array, value) => {
-  if (hasAllValues([array, value]) && isArray(array)) {
-    if (isArray(value)) {
-      for (const element of value) {
-        if (!array.includes(element)) return false;
-      }
-      return true;
-    } else return array.includes(value);
-  }
-  return false;
+  if (isArray(value)) {
+    for (const element of value) {
+      if (!array.includes(element)) return false;
+    }
+    return true;
+  } else return array.includes(value);
 };
 
 //on version 2
@@ -147,21 +128,18 @@ export const inArray = (array, value) => {
 export const inArrayAnyValue = (array, value) => {
   let exist = [],
     notExist = [];
-  if (hasAllValues([array, value]) && isArray(array)) {
-    if (isArray(value)) {
-      for (const element of value) {
-        if (!array.includes(element)) return notExist.push(element);
-        else exist.push(element);
-      }
-      return {
-        ok: hasValue(exist),
-        complete: hasValue(exist) && !hasValue(notExist) ? true : false,
-        exist,
-        notExist
-      };
-    } else return { ok: false, complete: false, exist, notExist };
-  }
-  return { ok: false, complete: false, exist, notExist };
+  if (isArray(value)) {
+    for (const element of value) {
+      if (!array.includes(element)) return notExist.push(element);
+      else exist.push(element);
+    }
+    return {
+      ok: hasValue(exist),
+      complete: hasValue(exist) && !hasValue(notExist) ? true : false,
+      exist,
+      notExist
+    };
+  } else return { ok: false, complete: false, exist, notExist };
 };
 
 /**
@@ -170,15 +148,12 @@ export const inArrayAnyValue = (array, value) => {
  * @param {*} value - It's can be an array
  */
 export const inObject = (obj, value) => {
-  if (hasAllValues([obj, value]) && isCommonObject(obj)) {
-    if (isArray(value)) {
-      for (const element of value) {
-        if (!obj.hasOwnProperty(element)) return false;
-      }
-      return true;
-    } else return obj.hasOwnProperty(value);
-  }
-  return false;
+  if (isArray(value)) {
+    for (const element of value) {
+      if (!obj.hasOwnProperty(element)) return false;
+    }
+    return true;
+  } else return obj.hasOwnProperty(value);
 };
 
 // on version 2
@@ -190,108 +165,55 @@ export const inObject = (obj, value) => {
 export const inObjectAnyProp = (obj, values) => {
   let exist = [],
     notExist = [];
-  if (hasAllValues([obj, values]) && isCommonObject(obj)) {
-    if (isArray(values)) {
-      for (const element of values) {
-        if (!obj.hasOwnProperty(element)) notExist.push(element);
-        else exist.push(element);
-      }
-      return {
-        ok: hasValue(exist),
-        complete: hasValue(exist) && !hasValue(notExist) ? true : false,
-        exist,
-        notExist
-      };
-    } else return { ok: false, complete: false, exist, notExist };
-  }
-  return { ok: false, complete: false, exist, notExist };
+  if (isArray(values)) {
+    for (const element of values) {
+      if (!obj.hasOwnProperty(element)) notExist.push(element);
+      else exist.push(element);
+    }
+    return {
+      ok: hasValue(exist),
+      complete: hasValue(exist) && !hasValue(notExist) ? true : false,
+      exist,
+      notExist
+    };
+  } else return { ok: false, complete: false, exist, notExist };
 };
 
 /**
  * check if all elements of array are strings
  * @param {array} value
  */
-export const isAllString = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isString(element)) return false;
-    }
-    return true;
-  }
-
-  return false;
-};
+export const isAllString = value => value.every(isString);
 
 /**
  * check if all elements of array are common numbers
  * @param {array} value
  */
-export const isAllCommonNumber = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isCommonNumber(element)) return false;
-    }
-    return true;
-  }
-
-  return false;
-};
+export const isAllCommonNumber = value => value.every(isCommonNumber);
 
 /**
  * check if all elements of array are arrays
  * @param {array} value
  */
-export const isAllArray = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isArray(element)) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const isAllArray = value => value.every(isArray);
 
 /**
  * check if all elements of array are common objects
  * @param {array} value
  */
-export const isAllCommonObject = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isCommonObject(element)) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const isAllCommonObject = value => value.every(isCommonObject);
 
 /**
  * check if all elements of array are objectIds
  * @param {array} value
  */
-export const isAllObjectId = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isObjectId(element)) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const isAllObjectId = value => value.every(isObjectId);
 
 /**
  * check if all elements of array are booleans
  * @param {array} value
  */
-export const isAllBoolean = value => {
-  if (hasValue(value) && isArray(value)) {
-    for (const element of value) {
-      if (!isBoolean(element)) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const isAllBoolean = value => value.every(isBoolean);
 
 // on version 2.1.0
 /**
@@ -300,15 +222,8 @@ export const isAllBoolean = value => {
  * @param {array} values
  * @param {string} type - typeof
  */
-export const isAll = (values, type) => {
-  if (hasValue(values) && isArray(values) && isString(type)) {
-    for (const element of values) {
-      if (getTypeof(element) !== type) return false;
-    }
-    return true;
-  }
-  return false;
-};
+export const isAll = (values, type) =>
+  values.every(val => getTypeof(val) === type);
 
 /**
  * justify space between words |
@@ -316,12 +231,9 @@ export const isAll = (values, type) => {
  * @param {string} value
  */
 export const justifySpaceWords = value => {
-  if (isString(value) && hasValue(value)) {
-    const regExp = /\s+/gi;
-    let words = value.replace(regExp, " ");
-    return words;
-  }
-  return value;
+  const regExp = /\s+/gi;
+  let words = value.replace(regExp, " ");
+  return words;
 };
 
 /**
@@ -331,18 +243,15 @@ export const justifySpaceWords = value => {
  * @param {boolean} all - true ? "capitalize all words": "capitalize the first word"
  */
 export const capitalizeText = (value, all = false) => {
-  if (isString(value) && hasValue(value)) {
-    if (!all) return value.charAt(0).toUpperCase() + value.slice(1);
-    else {
-      const regExp = /[^\s]+/gi;
-      let newText = value.replace(regExp, match => {
-        match = match.trim();
-        return match.charAt(0).toUpperCase() + match.slice(1);
-      });
-      return newText;
-    }
+  if (!all) return value.charAt(0).toUpperCase() + value.slice(1);
+  else {
+    const regExp = /[^\s]+/gi;
+    let newText = value.replace(regExp, match => {
+      match = match.trim();
+      return match.charAt(0).toUpperCase() + match.slice(1);
+    });
+    return newText;
   }
-  return value;
 };
 
 /**
@@ -353,20 +262,17 @@ export const capitalizeText = (value, all = false) => {
  *  @param {number} min - positive number
  */
 export const checkMinValueEachWords = (value, min) => {
-  if (hasAllValues([value, min]) && isString(value) && isCommonNumber(min)) {
-    value = value.trim();
-    const regExp = /[^\s]+/gi;
-    let ok = true;
+  value = value.trim();
+  const regExp = /[^\s]+/gi;
+  let ok = true;
 
-    value.replace(regExp, match => {
-      if (match) {
-        if (match.trim().length < min) ok = false;
-      }
-      return "";
-    });
-    return ok;
-  }
-  return false;
+  value.replace(regExp, match => {
+    if (match) {
+      if (match.trim().length < min) ok = false;
+    }
+    return "";
+  });
+  return ok;
 };
 
 /**
@@ -377,20 +283,17 @@ export const checkMinValueEachWords = (value, min) => {
  *  @param {number} max - positive number
  */
 export const checkMaxValueEachWords = (value, max) => {
-  if (hasAllValues([value, max]) && isString(value) && isCommonNumber(max)) {
-    value = value.trim();
-    const regExp = /[^\s]+/gi;
-    let ok = true;
+  value = value.trim();
+  const regExp = /[^\s]+/gi;
+  let ok = true;
 
-    value.replace(regExp, match => {
-      if (match) {
-        if (match.trim().length > max) ok = false;
-      }
-      return "";
-    });
-    return ok;
-  }
-  return false;
+  value.replace(regExp, match => {
+    if (match) {
+      if (match.trim().length > max) ok = false;
+    }
+    return "";
+  });
+  return ok;
 };
 
 /**
@@ -400,26 +303,19 @@ export const checkMaxValueEachWords = (value, max) => {
  * @param {number} max - max value for each word
  */
 export const checkMinAndMaxValueEachWord = (value, min, max) => {
-  if (
-    hasAllValues([value, min, max]) &&
-    isString(value) &&
-    isAllCommonNumber([min, max])
-  ) {
-    value = value.trim();
-    const regExp = /[^\s]+/gi;
-    let ok = true;
+  value = value.trim();
+  const regExp = /[^\s]+/gi;
+  let ok = true;
 
-    value.replace(regExp, match => {
-      if (match) {
-        match = match.trim();
-        let qty = match.length;
-        if (qty > max || qty < min) ok = false;
-      }
-      return "";
-    });
-    return ok;
-  }
-  return false;
+  value.replace(regExp, match => {
+    if (match) {
+      match = match.trim();
+      let qty = match.length;
+      if (qty > max || qty < min) ok = false;
+    }
+    return "";
+  });
+  return ok;
 };
 
 /**
@@ -447,19 +343,16 @@ export const correctName = value => {
  * @param {*} values - it's can be an array
  */
 export const removeArrayElements = (array, values) => {
-  if (hasValue(array) && isArray(array)) {
-    if (isArray(values)) {
-      for (const element of values) {
-        let pos = array.indexOf(element);
-        if (pos > -1) array.splice(pos, 1);
-      }
-    } else {
-      let pos = array.indexOf(values);
+  if (isArray(values)) {
+    for (const element of values) {
+      let pos = array.indexOf(element);
       if (pos > -1) array.splice(pos, 1);
     }
-    return [...array];
+  } else {
+    let pos = array.indexOf(values);
+    if (pos > -1) array.splice(pos, 1);
   }
-  return array;
+  return [...array];
 };
 
 // on version 2
@@ -487,21 +380,18 @@ export const getTypeof = value => {
  * @param {*} values - it's can be an array
  */
 export const getArrayElements = (array, values) => {
-  if (hasAllValues(array, values) && isArray(array)) {
-    if (isArray(values)) {
-      let newArray = [];
-      for (const element of values) {
-        let pos = array.indexOf(element);
-        if (pos > -1) newArray.push(array[pos]);
-      }
-      return [...newArray];
-    } else {
-      let pos = array.indexOf(values);
-      if (pos > -1) return [array[pos]];
-      else return [];
+  if (isArray(values)) {
+    let newArray = [];
+    for (const element of values) {
+      let pos = array.indexOf(element);
+      if (pos > -1) newArray.push(array[pos]);
     }
+    return [...newArray];
+  } else {
+    let pos = array.indexOf(values);
+    if (pos > -1) return [array[pos]];
+    else return [];
   }
-  return array;
 };
 
 /**
@@ -510,16 +400,13 @@ export const getArrayElements = (array, values) => {
  * @param {*} values - It's can't be an array
  */
 export const removeObjectProps = (obj, values) => {
-  if (hasAllValues([obj, values]) && isCommonObject(obj)) {
-    if (isArray(values)) {
-      for (let i = 0; i < values.length; i++) {
-        if (obj.hasOwnProperty(values[i])) delete obj[values[i]];
-      }
-    } else if (obj.hasOwnProperty(values)) delete obj[values];
+  if (isArray(values)) {
+    for (let i = 0, el; el !== values[i]; i++) {
+      if (obj.hasOwnProperty(values[i])) delete obj[values[i]];
+    }
+  } else if (obj.hasOwnProperty(values)) delete obj[values];
 
-    return { ...obj };
-  }
-  return obj;
+  return { ...obj };
 };
 
 /**
@@ -528,20 +415,17 @@ export const removeObjectProps = (obj, values) => {
  * @param {*} values - It's can't be an array
  */
 export const getObjectProps = (obj, values) => {
-  if (hasAllValues([obj, values]) && isCommonObject(obj)) {
-    if (isArray(values)) {
-      let newObj = {};
-      for (let i = 0; i < values.length; i++) {
-        if (obj.hasOwnProperty(values[i])) newObj[values[i]] = obj[values[i]];
-        else newObj[values[i]] = null;
-      }
-      return { ...newObj };
-    } else
-      return obj.hasOwnProperty(values)
-        ? { [values]: obj[values] }
-        : { [values]: null };
-  }
-  return obj;
+  if (isArray(values)) {
+    let newObj = {};
+    for (let i = 0, el; el !== values[i]; i++) {
+      if (obj.hasOwnProperty(values[i])) newObj[values[i]] = obj[values[i]];
+      else newObj[values[i]] = null;
+    }
+    return { ...newObj };
+  } else
+    return obj.hasOwnProperty(values)
+      ? { [values]: obj[values] }
+      : { [values]: null };
 };
 
 /**
@@ -568,60 +452,47 @@ export const generateObjectId = value => new mongoose.Types.ObjectId(value);
  * @param {*} value - value prop
  */
 export const getElementPos = (array, field, value) => {
-  if (
-    hasAllValues([array, field, value]) &&
-    isArray(array) &&
-    isString(field)
-  ) {
-    let pos = -1;
-    array.find((val, index) => {
-      pos = index;
-      return val[field] === value;
-    });
-    return pos;
+  let pos = -1;
+  for (let i = 0, el; el !== array[i]; i++) {
+    if (array[i][field] === value) {
+      pos = i;
+      return pos;
+    }
   }
-  return -1;
+  return pos;
 };
 
 /**
  * Remove repeated elements from array
  * @param {array} array
  */
-export const uniqueArray = array => {
-  if (hasValue(array) && isArray(array))
-    return array.filter((value, index, self) => self.indexOf(value) === index);
-  return array;
-};
+export const uniqueArray = array =>
+  array.filter((value, index, self) => self.indexOf(value) === index);
 
 /**
  * remove repeated elements from an array of objects by property
  * @param {array} array
  * @param {*} value - It can't be a iterator value
  */
-export const uniqueArrayObjectBy = (array, value) => {
-  if (hasAllValues([array, value]) && isArray(array))
-    return array.filter((val, index, self) => {
-      return (
-        array[index][value] === self[index][value] &&
-        getElementPos(self, value, val[value]) === index
-      );
-    });
-  return array;
-};
+export const uniqueArrayObjectBy = (array, value) =>
+  array.filter((val, index, self) => {
+    return (
+      array[index][value] === self[index][value] &&
+      getElementPos(self, value, val[value]) === index
+    );
+  });
 
 /**
  * check if exist module
  * @param {string} value - module name like "http"
  */
 export const existModule = value => {
-  if (hasValue(value) && isString(value)) {
-    try {
-      require.resolve(value);
-      return true;
-    } catch (error) {
-      return false;
-    }
-  } else return false;
+  try {
+    require.resolve(value);
+    return true;
+  } catch (error) {
+    return false;
+  }
 };
 // on version 2
 const putRules = config => {
