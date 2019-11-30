@@ -22,15 +22,14 @@ export const isPhoneNumber = value => {
   if (regex.test(value)) return true;
   return false;
 };
-export const isEmail = value => {
-  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+export const isEmail = value =>
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
     value.trim()
   );
-};
 
 /**
  * check if value is an username |
- * ex: [\_joao99, jay99_, jay] = true
+ * ex: [João, Js-Developer, J'soft] = true
  * @param {*} value
  */
 export const isName = value => {
@@ -63,8 +62,7 @@ export const isUsername = (value, limitChar) => {
  */
 export const isCommonObject = value => {
   if (isObject(value)) {
-    let aux = JSON.stringify(value).split("");
-    if (aux[0] === "{") return true;
+    if (JSON.stringify(value).split("")[0] === "{") return true;
     return false;
   }
   return false;
@@ -111,12 +109,8 @@ export const hasValueAllProps = (obj, values) => {
  * @param {*} value - It's can be an array
  */
 export const inArray = (array, value) => {
-  if (isArray(value)) {
-    for (const element of value) {
-      if (!array.includes(element)) return false;
-    }
-    return true;
-  } else return array.includes(value);
+  if (isArray(value)) return value.every(val => array.includes(val));
+  return array.includes(value);
 };
 
 //on version 2
@@ -230,11 +224,8 @@ export const isAll = (values, type) =>
  * ex: 'joão  trindade' = 'joão trindade'
  * @param {string} value
  */
-export const justifySpaceWords = value => {
-  const regExp = /\s+/gi;
-  let words = value.replace(regExp, " ");
-  return words;
-};
+export const justifySpaceWords = value =>
+  value.trim().replace(/[\s]{2,}/gi, " ");
 
 /**
  * ex: <all=false> 'jOÃO tRiNdade jsoFt' = 'JOÃO tRiNdade jsoFt' |
@@ -243,15 +234,18 @@ export const justifySpaceWords = value => {
  * @param {boolean} all - true ? "capitalize all words": "capitalize the first word"
  */
 export const capitalizeText = (value, all = false) => {
-  if (!all) return value.charAt(0).toUpperCase() + value.slice(1);
-  else {
-    const regExp = /[^\s]+/gi;
-    let newText = value.replace(regExp, match => {
-      match = match.trim();
-      return match.charAt(0).toUpperCase() + match.slice(1);
-    });
-    return newText;
-  }
+  if (!all)
+    return (
+      value
+        .trim()
+        .charAt(0)
+        .toUpperCase() + value.slice(1)
+    );
+  else
+    return value.replace(
+      /[^\s]+/gi,
+      match => match.charAt(0).toUpperCase() + match.slice(1)
+    );
 };
 
 /**
@@ -262,17 +256,8 @@ export const capitalizeText = (value, all = false) => {
  *  @param {number} min - positive number
  */
 export const checkMinValueEachWords = (value, min) => {
-  value = value.trim();
-  const regExp = /[^\s]+/gi;
-  let ok = true;
-
-  value.replace(regExp, match => {
-    if (match) {
-      if (match.trim().length < min) ok = false;
-    }
-    return "";
-  });
-  return ok;
+  value = justifySpaceWords(value).split(" ");
+  return value.every(val => val.length >= min);
 };
 
 /**
@@ -283,17 +268,8 @@ export const checkMinValueEachWords = (value, min) => {
  *  @param {number} max - positive number
  */
 export const checkMaxValueEachWords = (value, max) => {
-  value = value.trim();
-  const regExp = /[^\s]+/gi;
-  let ok = true;
-
-  value.replace(regExp, match => {
-    if (match) {
-      if (match.trim().length > max) ok = false;
-    }
-    return "";
-  });
-  return ok;
+  value = justifySpaceWords(value).split(" ");
+  return value.every(val => val.length <= max);
 };
 
 /**
@@ -302,21 +278,8 @@ export const checkMaxValueEachWords = (value, max) => {
  * @param {number} min - min value for each word
  * @param {number} max - max value for each word
  */
-export const checkMinAndMaxValueEachWord = (value, min, max) => {
-  value = value.trim();
-  const regExp = /[^\s]+/gi;
-  let ok = true;
-
-  value.replace(regExp, match => {
-    if (match) {
-      match = match.trim();
-      let qty = match.length;
-      if (qty > max || qty < min) ok = false;
-    }
-    return "";
-  });
-  return ok;
-};
+export const checkMinAndMaxValueEachWord = (value, min, max) =>
+  checkMinValueEachWords(value, min) && checkMaxValueEachWords(value, max);
 
 /**
  * remove special characters and space except accents |
@@ -324,17 +287,10 @@ export const checkMinAndMaxValueEachWord = (value, min, max) => {
  * @param {*} value
  */
 export const correctName = value => {
-  const regExp = new RegExp(`[^a-zA-Z-'${nameAllowedChar}]`, "gi"),
-    regExp2 = /[']{2,}/gi,
-    regExp3 = /[\-]{2,}/gi;
-
-  let splitted = value.split(" ");
-  for (const index in splitted) {
-    splitted[index] = splitted[index].replace(regExp, "");
-    splitted[index] = splitted[index].replace(regExp2, "'");
-    splitted[index] = splitted[index].replace(regExp3, "-");
-  }
-  return justifySpaceWords(splitted.join(" "));
+  value = value.replace(/['\-\s]{2,}/gi, match => match[0]);
+  const regExp = new RegExp(`[^a-zA-Z-'\\s${nameAllowedChar}]`, "gi");
+  value = value.replace(regExp, "");
+  return justifySpaceWords(value);
 };
 
 /**
@@ -380,18 +336,8 @@ export const getTypeof = value => {
  * @param {*} values - it's can be an array
  */
 export const getArrayElements = (array, values) => {
-  if (isArray(values)) {
-    let newArray = [];
-    for (const element of values) {
-      let pos = array.indexOf(element);
-      if (pos > -1) newArray.push(array[pos]);
-    }
-    return [...newArray];
-  } else {
-    let pos = array.indexOf(values);
-    if (pos > -1) return [array[pos]];
-    else return [];
-  }
+  if (isArray(values)) return array.filter(val => values.includes(val));
+  return array.filter(val => val === values);
 };
 
 /**
@@ -401,7 +347,7 @@ export const getArrayElements = (array, values) => {
  */
 export const removeObjectProps = (obj, values) => {
   if (isArray(values)) {
-    for (let i = 0, el; el !== values[i]; i++) {
+    for (let i = 0, el = values.length; i < el; i++) {
       if (obj.hasOwnProperty(values[i])) delete obj[values[i]];
     }
   } else if (obj.hasOwnProperty(values)) delete obj[values];
@@ -417,7 +363,7 @@ export const removeObjectProps = (obj, values) => {
 export const getObjectProps = (obj, values) => {
   if (isArray(values)) {
     let newObj = {};
-    for (let i = 0, el; el !== values[i]; i++) {
+    for (let i = 0, el = values.length; i < el; i++) {
       if (obj.hasOwnProperty(values[i])) newObj[values[i]] = obj[values[i]];
       else newObj[values[i]] = null;
     }
@@ -451,23 +397,14 @@ export const generateObjectId = value => new mongoose.Types.ObjectId(value);
  * @param {string} field - object prop
  * @param {*} value - value prop
  */
-export const getElementPos = (array, field, value) => {
-  let pos = -1;
-  for (let i = 0, el; el !== array[i]; i++) {
-    if (array[i][field] === value) {
-      pos = i;
-      return pos;
-    }
-  }
-  return pos;
-};
+export const getElementPos = (array, field, value) =>
+  array.findIndex(val => val[field] === value);
 
 /**
  * Remove repeated elements from array
  * @param {array} array
  */
-export const uniqueArray = array =>
-  array.filter((value, index, self) => self.indexOf(value) === index);
+export const uniqueArray = array => Array.from(new Set(array));
 
 /**
  * remove repeated elements from an array of objects by property
@@ -515,7 +452,7 @@ const putRules = config => {
         if (hasValue(rule.needFields) && isArray(rule.needFields)) {
           let check = hasValueAllProps(data, rule.needFields);
           if (!check.ok) {
-            errorFields[element] = `this field needs ${JSON.stringify(
+            errorFields[element] = `This field needs ${JSON.stringify(
               check.except
             )}`;
             continue;

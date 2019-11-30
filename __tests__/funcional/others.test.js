@@ -14,8 +14,15 @@ describe("isAll => testing 'string'", () => {
 });
 
 describe("justifySpaceWords", () => {
-  const check = "jay  trindade   soft",
+  let check = "jay  trindade   soft",
     checked = "jay trindade soft";
+
+  it(`"${check}" must be "${checked}"`, () => {
+    expect(jagile.justifySpaceWords(check)).toBe(checked);
+  });
+
+  check = "jay ";
+  checked = "jay";
 
   it(`"${check}" must be "${checked}"`, () => {
     expect(jagile.justifySpaceWords(check)).toBe(checked);
