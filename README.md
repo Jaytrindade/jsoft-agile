@@ -46,7 +46,7 @@ import {inObject, ...} from "jsoft-agile";
 ## What jsoft-agile offers us?
 
 #### Added in version 2.x 
-###### 2.3.0
+###### 2.4.3
 Faster and fully independent.
 
 ###### 2.2.0
