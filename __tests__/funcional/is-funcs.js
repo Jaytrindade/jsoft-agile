@@ -1,12 +1,11 @@
 import jagile from "../../src";
-import mongoose from "mongoose";
 
 const commonNumber = [-1, -1.2, 0, 1, 1.2],
   number = [...commonNumber, NaN],
   commonObject = [{}],
   array = [[]],
   object = [null, ...array, ...commonObject],
-  objectId = [mongoose.Types.ObjectId("5db7e872dab3eb3d7cc44080")],
+  objectId = [new Object("5db7e872dab3eb3d7cc44080")],
   boolean = [true, false],
   string = ["jay", ""];
 

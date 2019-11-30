@@ -1,6 +1,6 @@
 {
   "name": "jsoft-agile",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "A Node.js module that provides a collection of ready-made functions used on large systems for their development.",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -40,12 +40,8 @@
     "url": "https://github.com/Jaytrindade/jsoft-agile/issues"
   },
   "homepage": "https://github.com/Jaytrindade/jsoft-agile#readme",
-  "dependencies": {
-    "mongoose": "^5.7.7"
-  },
-  "peerDependencies": {
-    "mongoose": "^5.7.7"
-  },
+  "dependencies": {},
+  "peerDependencies": {},
   "devDependencies": {
     "@sucrase/jest-plugin": "^2.0.0",
     "jest": "^24.9.0",

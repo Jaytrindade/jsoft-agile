@@ -31,9 +31,7 @@ you can load this module like this:
 
 ```javascript 
 const jagile = require("jsoft-agile");
-
 or
-
 const {wallFilters, ...} = require("jsoft-agile")
 ```
 
@@ -41,15 +39,16 @@ or like this:
 
 ```javascript 
 import jagile from "jsoft-agile";
-
 or
-
 import {inObject, ...} from "jsoft-agile";
 ```
 
 ## What jsoft-agile offers us?
 
-#### Addeds in version 2.x 
+#### Added in version 2.x 
+###### 2.3.0
+Faster and fully independent.
+
 ###### 2.2.0
 * [**`isName`**](#isName) *check if the passed value is a name*
 
@@ -65,11 +64,7 @@ import {inObject, ...} from "jsoft-agile";
 * [**`getTypeof`**](#getTypeof) *get **type** of **value** like "commonNumber, commonObject, array, function, etc..."*
 * [**`wallFilters`**](#wallFilters) *validates or filters all data according to a **rule***
 
-```
-6 new features added
-``` 
-
-#### Addeds in version 1.x
+#### Added in version 1.x
 
 * [**`isString`**](#isString) *check if the passed value is a `string`*
 * [**`isAllString`**](#isAllString) *check if all elements of an array are `strings`*

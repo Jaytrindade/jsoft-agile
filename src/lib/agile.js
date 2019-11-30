@@ -16,7 +16,7 @@ export const isCommonNumber = value => {
 export const isBoolean = value => typeof value === "boolean";
 export const isObject = value => typeof value === "object";
 export const isArray = value => Array.isArray(value);
-export const isObjectId = value => mongoose.Types.ObjectId.isValid(`${value}`);
+export const isObjectId = value => /^[0-9a-fA-F]{24}$/.test(value);
 export const isPhoneNumber = value => {
   let regex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
   if (regex.test(value)) return true;
@@ -387,9 +387,19 @@ export const getOnlyNumber = value => {
 
 /**
  * generates a unique objectId like "5db7e872dab3eb3d7cc44080"
- * @param {string} value - commonNumber | ObjectId
  */
-export const generateObjectId = value => new mongoose.Types.ObjectId(value);
+export const generateObjectId = () => {
+  let timestamp = ((new Date().getTime() / 1000) | 0).toString(16),
+    objId =
+      timestamp +
+      "xxxxxxxxxxxxxxxx"
+        .replace(/[x]/g, function() {
+          return ((Math.random() * 16) | 0).toString(16);
+        })
+        .toLowerCase();
+
+  return new Object(objId);
+};
 
 /**
  * get the first position of an array of objects by field and value
